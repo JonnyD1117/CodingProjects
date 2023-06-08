@@ -1,0 +1,8 @@
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/CMakeFiles/PyBindPract.dir
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/CMakeFiles/example_cpp_module.dir
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/CMakeFiles/edit_cache.dir
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/CMakeFiles/rebuild_cache.dir
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/deps/CMakeFiles/edit_cache.dir
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/deps/CMakeFiles/rebuild_cache.dir
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/deps/pybind11/CMakeFiles/edit_cache.dir
+/home/indy/repos/CodingProjects/PyBind11/DummyExample/build/deps/pybind11/CMakeFiles/rebuild_cache.dir

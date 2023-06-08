@@ -1,0 +1,1 @@
+/home/indy/repos/CodingProjects/ComputerVision/TemplateMatching/NormalizedCrossCorrelation/zncc.h

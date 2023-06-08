@@ -1,0 +1,5 @@
+if(EXISTS "/home/indy/repos/CodingProjects/DataStructures/Array/cmake-build-debug/UnitTests/array_unit[1]_tests.cmake")
+  include("/home/indy/repos/CodingProjects/DataStructures/Array/cmake-build-debug/UnitTests/array_unit[1]_tests.cmake")
+else()
+  add_test(array_unit_NOT_BUILT array_unit_NOT_BUILT)
+endif()

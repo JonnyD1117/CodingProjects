@@ -1,0 +1,5 @@
+if(EXISTS "/home/indy/repos/CodingProjects/DataStructures/LinkedList/cmake-build-debug/linked_list_unit[1]_tests.cmake")
+  include("/home/indy/repos/CodingProjects/DataStructures/LinkedList/cmake-build-debug/linked_list_unit[1]_tests.cmake")
+else()
+  add_test(linked_list_unit_NOT_BUILT linked_list_unit_NOT_BUILT)
+endif()

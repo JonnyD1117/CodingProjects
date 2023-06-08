@@ -1,0 +1,23 @@
+# ninja log v5
+3165	3260	1686114561518695048	linked_list_unit[1]_tests.cmake	38c8eb0e1b83e321
+3165	3260	1686114561518695048	/home/indy/repos/CodingProjects/DataStructures/LinkedList/cmake-build-debug/linked_list_unit[1]_tests.cmake	38c8eb0e1b83e321
+1	940	1686116210658901790	UnitTests/CMakeFiles/linked_list_unit.dir/LinkedListUnitTest.cpp.o	496424c0719258c8
+1	224	1685779055256485012	CMakeFiles/LinkedList.dir/LinkedList.cpp.o	567944ea693cec0
+3137	3165	1686114561422695330	lib/libgtest_maind.a	37cbe8a46fa34a60
+1	798	1686114559058702254	CMakeFiles/linked_list_unit.dir/UnitTests/LinkedListUnitTest.cpp.o	20881a620da0b28f
+0	96	1686114650318448676	build.ninja	d85d867637c4e8b8
+226	261	1686116226850810350	LinkedList	4f4198790140c601
+940	1039	1686116210758901221	/home/indy/repos/CodingProjects/DataStructures/LinkedList/cmake-build-debug/UnitTests/linked_list_unit[1]_tests.cmake	a7a6db0bcfdb7679
+3165	3260	1686114561518695048	linked_list_unit	38c8eb0e1b83e321
+1	2927	1686114561182696032	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.o	64b43b7fb5e57aec
+0	226	1686116226814810552	CMakeFiles/LinkedList.dir/main.cpp.o	64ca397ab61bee1f
+2928	3137	1686114561394695412	lib/libgtestd.a	259a7fe2b16ef9b6
+940	1039	1686116210758901221	UnitTests/linked_list_unit[1]_tests.cmake	a7a6db0bcfdb7679
+1	736	1686114558994702442	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o	c42f35b66faf2a4c
+940	1039	1686116210758901221	UnitTests/linked_list_unit	a7a6db0bcfdb7679
+0	213	1686116535409319167	CMakeFiles/LinkedList.dir/main.cpp.o	64ca397ab61bee1f
+213	247	1686116535441319032	LinkedList	4f4198790140c601
+1	844	1686116641784889078	UnitTests/CMakeFiles/linked_list_unit.dir/LinkedListUnitTest.cpp.o	496424c0719258c8
+844	938	1686116641876888720	UnitTests/linked_list_unit	a7a6db0bcfdb7679
+844	938	1686116641876888720	UnitTests/linked_list_unit[1]_tests.cmake	a7a6db0bcfdb7679
+844	938	1686116641876888720	/home/indy/repos/CodingProjects/DataStructures/LinkedList/cmake-build-debug/UnitTests/linked_list_unit[1]_tests.cmake	a7a6db0bcfdb7679
