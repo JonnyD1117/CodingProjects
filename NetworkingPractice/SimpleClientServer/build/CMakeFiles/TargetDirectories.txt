@@ -1,0 +1,4 @@
+/home/indy/Coding/NetworkingPractice/SimpleClientServer/build/CMakeFiles/SimpleServer.dir
+/home/indy/Coding/NetworkingPractice/SimpleClientServer/build/CMakeFiles/SimpleClient.dir
+/home/indy/Coding/NetworkingPractice/SimpleClientServer/build/CMakeFiles/edit_cache.dir
+/home/indy/Coding/NetworkingPractice/SimpleClientServer/build/CMakeFiles/rebuild_cache.dir

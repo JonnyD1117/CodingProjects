@@ -1,8 +1,12 @@
 #pragma once
 
+#include<iostream>
 #include <opencv2/opencv.hpp>
-#include "include/zncc.h"
+//#include "include/zncc.h"
+#include <iterator>
 
+
+#include "zncc_new.h"
 using namespace cv;
 
 class StereoBlockMatcher
@@ -27,6 +31,8 @@ public:
         width_ = width;
         height_ = height;
 
+        disparity_image = image_L;
+
         run();
 
         cv::imshow("Stereo Block Matching Algorithm", disparity_image);
@@ -36,36 +42,31 @@ private:
 
     void run()
     {
-        /* 1) Pad Left & Right Images based on window size.
-         * 2) For every row and col in ref image compute reference window correspondence,
-         * 3) For every col in sliding image (same ref row e.g. epipolar line) compute correspondence
-         * 4) for each row of sliding image select best matching correspondence
-         * 5) Back out pixel coords that best match
-         * 6) Compute image disparity from ref and sliding pixel values
-         * 7) Repeat for every row in Sliding image
-         */
+        int lr_margin = (width_ /2) ;
+        int tb_margin = (height_/2);
 
         // Zero Pad Stereo Pair
+        copyMakeBorder( image_L_, image_L_, tb_margin, tb_margin, lr_margin, lr_margin, BORDER_CONSTANT, 0 );
+        copyMakeBorder( image_R_, image_R_, tb_margin, tb_margin, lr_margin, lr_margin, BORDER_CONSTANT, 0 );
 
-//        double ref_value;
+        std::vector<double> test_list (image_L_.cols, 0);
 
-        int max_u = image.rows - temp_img.rows;
-        int max_v = image.cols - temp_img.cols;
+        for(int row=0; row <= image_L_.rows - height_; row++){
 
+            std::cout << "Row = " << row << std::endl;
 
-
-        for(int u=0; u < max_u; u++)
-        {
-            for( int v =0; v < max_v; v++)
+            for( int col =0; col <= image_L_.cols - width_; col++)
             {
-                for(;;)
-                {
+                reference_window = image_L_(Range(row, row + height_), Range(col, col + width_ ));
 
+                for( int c =0; c < image_L_.cols- width_; c++)
+                {
+                    test_list[c] = zncc(image_R_, reference_window, row, c);
                 }
-                sub_image = image(Range(u, u + temp_img.rows), Range(v, v + temp_img.cols));
-                zncc_img.at<double>(u,v) = zncc(sub_image, temp_img);
+                
+                int index = std::distance(test_list.begin(), max_element(test_list.begin(), test_list.end())) ;
+                disparity_image.at<double>(row,col) = col - index;
             }
         }
-
     }
 };

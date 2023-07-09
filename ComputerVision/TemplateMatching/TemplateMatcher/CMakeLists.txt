@@ -9,5 +9,5 @@ include_directories( ${OpenCV_INCLUDE_DIRS} )
 add_executable(TemplateMatcher main.cpp TemplateMatcher.h)
 target_link_libraries( TemplateMatcher ${OpenCV_LIBS} )
 
-target_include_directories(TemplateMatcher PUBLIC /home/indy/repos/CodingProjects/ComputerVision/TemplateMatching/NormalizedCrossCorrelation)
+target_include_directories(TemplateMatcher PUBLIC /home/indy/Coding/ComputerVision/SimilarityMeasures)
 
