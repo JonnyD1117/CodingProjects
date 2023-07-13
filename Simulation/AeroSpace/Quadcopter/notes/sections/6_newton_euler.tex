@@ -1,0 +1,146 @@
+\newpage
+
+\section{Newton-Euler Equations}
+By combining both Newton's and Euler's equations, we derive a 6-DOF differential equations of motion of a rigid body dynamic system for coupled translation and rotational dynamics. 
+
+$$\sum\vect{F} =  m(\dot{\vect{V}} + \omega \times \vect{V})$$
+$$\sum\vect{\tau} = \tilde{I}\dot{\vect{\omega}} + \omega \times (\tilde{I}\vect{\omega})$$
+
+Where $\sum F$ is the summation of external forces acting on the center of gravity of the system and likewise, $\sum \tau$ is the summation of external torques acting on the system. From this formulation of the Newton-Euler equations, we can derive the rigid body dynamics of the system by defining the linear and angular velocities and accelerations, as well as defining the forces and torques acting on the system. \\
+
+These equations can be generalized and simplified to make them easier to implement in simulation. 
+
+\newline
+\underline{\textbf{Inertial Frame Quantities:}}
+$$\vect{P} = \bvecttrans{x}{y}{z} \quad \vect{V_{ref}} = \bvecttrans{\dot{x}}{\dot{y}}{\dot{z}}$$
+
+\underline{\textbf{Body Frame Quantities:}}
+$$ V_{body} = \bvecttrans{u}{v}{w} \quad , \omega^{body} = \bvecttrans{p}{q}{r}$$
+
+\subsection{Newton-Euler Simplification}
+
+
+\subsubsection{Newton Equation Cross Product}
+
+It is possible to simplify the cross product contained within Newton's Equation by expanding then reducing the cross product to its vector form. 
+
+$$\vect{\omega} \times \vect{V_{body}} = \begin{vmatrix}
+    \hat{i} & \hat{j} & \hat{k}\\ 
+    p & q & r\\
+    u & v & w 
+\end{vmatrix} = \hat{i} \cdot (q w - r v) - \hat{j} \cdot (p w - r u) +\hat{k} \cdot (p v - q u)$$
+
+Yielding... 
+$$\vect{\omega} \times \vect{V_{body}} = \bvect{q w - r v}{r u -p w}{p v - q u}$$
+
+\subsubsection{Euler's Equation Cross Product}
+As with Newton's Equation, we can simplify by expanding the compact cross product form into a determinant and using the Inertial tensor. It should be noted that in the case of a quadcopter, its symmetrical construction allows for a simplification of the Inertial tensor to a diagonal matrix. 
+
+$$\tilde{I} = \begin{bmatrix}
+    I_{xx} & I_{xy} & I_{xz} \\
+    I_{yx} & I_{yy} & I_{yz} \\
+    I_{zx} & I_{zy} & I_{zz} \\
+\end{bmatrix} \rightarrow \begin{bmatrix}
+    I_{xx} & 0 & 0 \\
+    0 & I_{yy} & 0 \\
+    0 & 0 & I_{zz} \\
+\end{bmatrix}$$
+
+
+$$\tilde{I} \cdot \vect{\omega} = \begin{bmatrix}
+    I_{xx} & 0 & 0 \\
+    0 & I_{yy} & 0 \\
+    0 & 0 & I_{zz} \\
+\end{bmatrix} \cdot \bvect{p}{q}{r} = \bvect{I_{xx}p}{I_{yy}q}{I_{zz}r}$$
+
+$$\vect{\omega} \times (\tilde{I}\cdot \vect{\omega}) = \begin{vmatrix}
+    \hat{i} & \hat{j} & \hat{k}\\ 
+    p & q & r\\
+    I_{xx}p & I_{yy}q & I_{zz}r
+\end{vmatrix} = \hat{i} \cdot (q I_{zz}r - r I_{yy}q) - \hat{j} \cdot (p I_{zz}r - r I_{xx}p) +\hat{k} \cdot (p I_{yy}q - q I_{xx}p) $$
+
+$$ \vect{\omega} \times (\tilde{I}\cdot \vect{\omega})= \bvect{(I_{zz} - I_{yy})qr}{(I_{xx} - I_{zz})pr}{(I_{yy}- I_{xx})pq}$$
+
+
+
+\subsubsection{Newton-Euler Simplifications}
+Now that we have simplified the cross product terms, we can substitute these terms back into the governing equations... 
+
+$$\sum\vect{F} =  m(\dot{\vect{V}} + \omega \times \vect{V})\quad \quad \sum\vect{\tau} = \tilde{I}\dot{\vect{\omega}} + \omega \times (\tilde{I}\vect{\omega})$$
+
+
+\newline 
+
+$$\vect{\omega} \times \vect{V_{body}} = \bvect{q w - r v}{r u -p w}{p v - q u} \quad 
+\& \quad \vect{\omega} \times (\tilde{I}\cdot \vect{\omega})= \bvect{(I_{zz} - I_{yy})qr}{(I_{xx} - I_{zz})pr}{(I_{yy}- I_{xx})pq}$$
+
+
+
+Substitute simplified terms... 
+
+$$\sum\vect{F} =   m\dot{\vect{V}} + m\bvect{q w - r v}{r u -p w}{p v - q u} \quad \rightarrow \quad \sum\vect{F} =   m\bvectdot{u}{v}{w} + m\bvect{q w - r v}{r u -p w}{p v - q u} $$
+
+
+$$ \sum\vect{\tau} = \tilde{I}\dot{\vect{\omega}} + \bvect{(I_{zz} - I_{yy})qr}{(I_{xx} - I_{zz})pr}{(I_{yy}- I_{xx})pq} \quad \rightarrow \quad \sum\vect{\tau} = \tilde{I}\bvectdot{p}{q}{r} + \bvect{(I_{zz} - I_{yy})qr}{(I_{xx} - I_{zz})pr}{(I_{yy}- I_{xx})pq}$$
+
+These equations more useful in later steps, it is desirable to reform these equations by solving for accelerations. 
+
+
+$$\bvectdot{u}{v}{w} = \frac{1}{m}\sum\vect{F} - \bvect{q w - r v}{r u -p w}{p v - q u} $$
+
+
+$$ \bvectdot{p}{q}{r} = \tilde{I}^{-1}\sum\vect{\tau} - \tilde{I}^{-1}\bvect{(I_{zz} - I_{yy})qr}{(I_{xx} - I_{zz})pr}{(I_{yy}- I_{xx})pq}$$
+
+As written Newton's equation is fully simplified with the exception of the extern forces $F$; however, before we can completely simplify Euler's equation it is necessary to define the following definition. 
+
+$$\tilde{I} = \begin{bmatrix}
+    I_{xx} & 0 & 0 \\
+    0 & I_{yy} & 0 \\
+    0 & 0 & I_{zz} \\
+\end{bmatrix} \quad \quad \quad \tilde{I}^{-1} = \begin{bmatrix}
+    \frac{1}{I_{xx}} & 0 & 0 \\
+    0 & \frac{1}{I_{yy}} & 0 \\
+    0 & 0 & \frac{1}{I_{zz}} \\
+\end{bmatrix} $$
+
+It can be shown that the inverse of a diagonal matrix is simply another diagonal matrix where the elements are the reciprocals of the original matrix. Therefore...
+
+
+$$\tilde{I} \tilde{I}^{-1} = \begin{bmatrix}
+    I_{xx} & 0 & 0 \\
+    0 & I_{yy} & 0 \\
+    0 & 0 & I_{zz} \\
+\end{bmatrix} \begin{bmatrix}
+    \frac{1}{I_{xx}} & 0 & 0 \\
+    0 & \frac{1}{I_{yy}} & 0 \\
+    0 & 0 & \frac{1}{I_{zz}} \\
+\end{bmatrix}  = I_{3x3}$$
+
+This definition allows us to easily define the inverse of the inertial tensor and to further simplify Euler's equation. 
+
+
+$$ \bvectdot{p}{q}{r} = \begin{bmatrix}
+    \frac{1}{I_{xx}} & 0 & 0 \\
+    0 & \frac{1}{I_{yy}} & 0 \\
+    0 & 0 & \frac{1}{I_{zz}} \\
+\end{bmatrix}\sum\vect{\tau} - \begin{bmatrix}
+    \frac{1}{I_{xx}} & 0 & 0 \\
+    0 & \frac{1}{I_{yy}} & 0 \\
+    0 & 0 & \frac{1}{I_{zz}} \\
+\end{bmatrix}\bvect{(I_{zz} - I_{yy})qr}{(I_{xx} - I_{zz})pr}{(I_{yy}- I_{xx})pq}$$
+
+Resulting in... 
+
+
+$$ \bvectdot{p}{q}{r} = \bvect{\frac{\sum\tau_{1}}{I_{xx}}}{\frac{\sum\tau_{2}}{I_{yy}}}{\frac{\sum\tau_{3}}{I_{zz}}} - \bvect{\frac{(I_{zz} - I_{yy})}{I_{xx}}qr}{\frac{(I_{xx} - I_{zz})}{I_{yy}}pr}{\frac{(I_{yy}- I_{xx})}{I_{zz}}pq} \quad \quad \text{where} \quad \sum\vect{\tau} = \bvect{\sum\tau_{1}}{\sum\tau_{2}}{\sum\tau_{3}}$$
+
+\section{Simplified Form - Newton-Euler Equations}
+
+After all of this manipulation and simplification, we arrive at the final form of the Newton-Euler equations for rigid body motion in 6 Degrees of Freedom, shown below. 
+
+
+$$\boxed{\bvectdot{u}{v}{w} = \frac{1}{m}\sum\vect{F} - \bvect{q w - r v}{r u -p w}{p v - q u}} $$
+
+$$\boxed{ \bvectdot{p}{q}{r} = \bvect{\frac{\sum\tau_{1}}{I_{xx}}}{\frac{\sum\tau_{2}}{I_{yy}}}{\frac{\sum\tau_{3}}{I_{zz}}} - \bvect{\frac{(I_{zz} - I_{yy})}{I_{xx}}qr}{\frac{(I_{xx} - I_{zz})}{I_{yy}}pr}{\frac{(I_{yy}- I_{xx})}{I_{zz}}pq} \quad \quad \text{where} \quad \sum\vect{\tau} = \bvect{\sum\tau_{1}}{\sum\tau_{2}}{\sum\tau_{3}}}$$
+
+The only remaining task is to compute the external forces and torques into the formulation above so that system of differential equations of motion can be constructed for the quadcopter. 

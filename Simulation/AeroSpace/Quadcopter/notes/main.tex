@@ -1,0 +1,80 @@
+\documentclass[journal, onecolumn]{IEEEtran}
+
+\usepackage{biblatex}
+
+
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cancel}
+\usepackage{tabularx}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{parskip}
+\usepackage{graphicx,wrapfig,lipsum}
+
+\usepackage{bookmark}
+
+% \usepackage{caption}
+% \usepackage{subcaption}
+
+\usepackage{subfig}
+% \usepackage[authordate,autocite=inline,backend=biber,sorting=nyt,natbib=true]{biblatex}
+% \addbibresource{citations.bib}
+
+
+\usepackage{harpoon}
+% \newcommand*{\vect}[1]{\overrightharp{\ensuremath{#1}}}
+
+\newcommand{\vect}{\overset{\rightharpoonup}}
+\newcommand{\bvect}[3]{\begin{bmatrix}
+    #1 \\
+    #2 \\
+    #3
+\end{bmatrix}}
+\newcommand{\bvecttrans}[3]{\begin{bmatrix}
+    #1 & #2 & #3
+\end{bmatrix}^{T}}
+\newcommand{\bvectdot}[3]{\begin{bmatrix}
+    \dot{#1} \\
+    \dot{#2} \\
+    \dot{#3}
+\end{bmatrix}}
+
+\newcommand\norm[1]{\lVert#1\rVert}
+
+\graphicspath {{images}}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=false,
+linkcolor=blue,
+filecolor=magenta,
+    urlcolor=blue,
+}
+\urlstyle{same}
+
+\begin{document}
+
+\title{Quadcopter Differential Equations of Motion}
+\author{Jonathan~Dorsey  \\  \url{https://github.com/JonnyD1117/}}
+
+% \IEEEmembership{Member: No Sleep Club: est. 2017}
+\markboth{Journal of Graduate School Assignments March~2023}
+
+\maketitle
+
+\input{sections/0_introduction.tex}
+\input{sections/1_coordinate_frames.tex}
+\input{sections/4_newtons_eqns.tex}
+\input{sections/5_eulers_eqns.tex}
+\input{sections/6_newton_euler.tex}
+\input{sections/7_external_forces.tex}
+\input{sections/8_dynamics_model.tex}
+\input{sections/9_simulation.tex}
+
+
+
+\printbibliography  
+
+\end{document}

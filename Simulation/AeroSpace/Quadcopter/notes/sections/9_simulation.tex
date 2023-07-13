@@ -1,0 +1,67 @@
+\section{Simulation}
+Now that the dynamics of the system have been handled, we can turn to the simulation by preparing a State Space model of the quadcopter and then applying a feedback control system such that we can control the pose of the quadcopter in space and guide it to desirable positions. 
+
+\subsection{State Space Formulation}
+
+\subsubsection{System States \& Inputs}
+
+While it is possible to further model the system by including the dynamics of the actuators (four electric motors), for simplicity this simulation will assume direct control to command exact motor speeds 
+ 
+$$ \vect{U} = [\omega_1, \omega_2, \omega_3, \omega_4]^{T} $$
+$$ \vect{Q} = \begin{bmatrix} 
+u, v, w, p, q, r, \bar{q}, x, y, z
+\end{bmatrix} $$
+
+\subsubsection{Canonical State Space Form}
+
+$$\dot{\vect{Q}} = \tilde{A}()\vect{Q} + \tilde{B}()\vect{U}$$
+% $$\vect{Y} = \tilde{C}()\vect{Q} + \tilde{D}()\vect{U}$$
+
+
+\subsubsection{Quadcopter State Space}
+
+$$\bvectdot{x}{y}{z} = R(\bar{q})\bvect{u}{v}{w}$$
+
+$$\bvectdot{u}{v}{w} = \frac{1}{m}\left(R(\bar{q})\biggr\rvert_{I}^{B}\left(\bvect{0}{0}{-mg} + \bvect{-k_d\dot{x}}{-k_d\dot{y}}{-k_d\dot{z}}\right) + k_{lift}\bvect{0}{0}{\sum\omega_{i}^{2}} \right) - \bvect{q w - r v}{r u -p w}{p v - q u}$$
+
+$$\bvectdot{p}{q}{r} = \begin{bmatrix}
+    \frac{1}{I_{xx}} & 0 & 0 \\
+    0 & \frac{1}{I_{yy}} & 0 \\
+    0 & 0 & \frac{1}{I_{zz}} \\
+\end{bmatrix} \bvect{Lk(\omega_{1}^{2} - \omega_{3}^{2})}{Lk(\omega_{2}^{2} - \omega_{4}^{2})}{b(\omega_{1}^{2}- \omega_{2}^{2} + \omega_{3}^{2} - \omega_{4}^{2})}- \bvect{\frac{(I_{zz} - I_{yy})}{I_{xx}}qr}{\frac{(I_{xx} - I_{zz})}{I_{yy}}pr}{\frac{(I_{yy}- I_{xx})}{I_{zz}}pq}$$
+
+
+% $$\begin{bmatrix}
+%     \dot{u} \\
+%     \dot{v} \\
+%     \dot{w} \\
+%     \dot{p} \\
+%     \dot{q} \\
+%     \dot{r} \\
+%     \dot{x} \\
+%     \dot{y} \\
+%     \dot{z} \\
+%     \dot{\bar{q}} \\
+% \end{bmatrix} = A \begin{bmatrix}
+%     u \\
+%     v \\
+%     w \\
+%     p \\
+%     q \\
+%     r \\
+%     x \\
+%     y \\
+%     z \\
+%     \bar{q}
+% \end{bmatrix} + B \begin{bmatrix}
+%     U_1 \\
+%     U_2 \\
+%     U_3 \\
+%     U_4 \\
+% \end{bmatrix}$$
+
+% $$$$
+
+\subsection{Discretization Scheme}
+
+\subsection{}

@@ -1,0 +1,15 @@
+
+\section{Eulers Equations}
+
+Euler's Equations of motion are the rotational analogue of Newton's Equation of Motion. It can be shown that the summation of torques acting on a dynamics system is equal to the time rate of change of the angular momentum of the system. However, unlike translational dynamics where mass is a scalar valued property, the inertial properties of an object in rotation change with the geometry about how mass is distributed through the system. Therefore we use the inertial tensor $\tilde{I}$ to encapsulate the full 3-dimensional nature of rotational mass. 
+
+$$\sum \vect{\tau} = \dot{\vect{H}} \quad \text{Where} \quad \vect{H} = \tilde{I}\vect{\omega}$$ 
+$$\sum\vect{\tau} = \tilde{I}\dot{\vect{\omega}} + \dot{\tilde{I}}\vect{H}$$
+
+As with translation dynamics, when considering the usecase of rotating reference frames the time derivative of the angular velocity is as follows.... 
+$$\frac{d(\vect{\omega})}{dt}\biggr \rvert_{inertial} = \dot{\vect{\omega}}\biggr \rvert_{body} + \omega \times \vect{\omega}$$
+
+$$\sum\vect{\tau} = \tilde{I}\left(\dot{\vect{\omega}} + \omega \times \vect{\omega}\right) + \dot{\tilde{I}}\vect{\omega}$$
+
+If the inertial properties of the system are constant with respect to time, we can simplify the expression as follows...  
+$$\sum\vect{\tau} = \tilde{I}(\dot{\vect{\omega}} + \omega \times \vect{\omega})$$
